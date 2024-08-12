@@ -15,7 +15,7 @@ const CartItem = (props) => {
   };
 
   return (
-    <div className="w-4/5 flex justify-between items-center bg-white shadow-lg rounded-2xl my-5 p-5 transition-transform transform hover:scale-105">
+    <div className=" w-4/5 flex justify-between items-center bg-white shadow-lg rounded-2xl my-5 p-5 transition-transform transform hover:scale-105">
       <img className="w-36 h-auto rounded-lg mr-5" src={productimage} alt={productname} />
       <div className="flex-grow text-lg text-gray-800">
         <p className="my-1"><b>{productname}</b></p>

@@ -169,7 +169,7 @@ const Custom = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    navigate('/pay');
+    navigate('/checkout');
     const data = {
       recipientName: formData.recipientName,
       Pic: formData.Pic,

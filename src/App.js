@@ -194,6 +194,8 @@ import PersonalizeGift from './home/PersonalizeGift';
 import AdminDashboard from './admin1/AdminDashboard';
 import SellerPage from './Authentication/SellerLogin';
 import Seller from './Authentication/Seller';
+import ProfilePage from './home/Profile';
+import CheckoutPage from './Payment/CheckoutPage';
 
 function App() {
   return (
@@ -223,6 +225,8 @@ function App() {
           <Route path='/admin' element={<AdminDashboard/>} />
           <Route path='/seller' element={<Seller/>} />
           <Route path='/sellerlogin'  element={<SellerPage/>}/>
+          <Route path='/profile' element={<ProfilePage/>} />
+          <Route path='/checkout' element={<CheckoutPage/>}/>
           </Routes>
         </Router>
         </Product1Context>

@@ -11,7 +11,7 @@ const Cart = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className='mt-10'>
       <Navbar />
       <div className="bg-slate-100 flex flex-col items-center p-10 min-h-screen bg-cover bg-center">
         <div className="text-center mb-8">
@@ -39,7 +39,7 @@ const Cart = () => {
               </button>
               <button
                 className="w-44 h-12 bg-[#2874f0] text-white border-none rounded-lg cursor-pointer text-lg transition-colors duration-300 hover:bg-[#0056b3]"
-                onClick={() => navigate("/pay", { state: { price: totalAmount } })}
+                onClick={() => navigate("/checkout", { state: { price: totalAmount } })}
               >
                 Pay Now
               </button>
