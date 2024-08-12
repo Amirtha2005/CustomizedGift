@@ -25,3 +25,6 @@ TailwindCSS framework guide : https://tailwindcss.com/docs/guides/create-react-a
 14.) npm install react-cookie
 
 
+## In a single command :
+npm install react-icons aos react-carousel-cards-npm ngx-slick-carousel react-slick react-axios react-router-dom react-scroll @react-oauth/google gapi-script react-google-login @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome react-cookie
+
