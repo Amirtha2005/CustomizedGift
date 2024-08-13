@@ -196,6 +196,9 @@ import SellerPage from './Authentication/SellerLogin';
 import Seller from './Authentication/Seller';
 import ProfilePage from './home/Profile';
 import CheckoutPage from './Payment/CheckoutPage';
+import Admina from './admin/Admina';
+import AdminSettings from './admin1/Adminsetting';
+import Usermanagement from './admin1/Usermanagement';
 
 function App() {
   return (
@@ -211,6 +214,7 @@ function App() {
             <Route path="/fav" element={<Fav />} />
             <Route path="/frames" element={<Product1 />} />
             <Route path="/custom" element={<Custom/>} />
+            <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/pay" element={<Pay />} />
             <Route path="/receipt" element={<Receipt/>} />
             <Route path="/product/:id/review" element={<Review />} /> {/* Add review page route */}
@@ -227,6 +231,9 @@ function App() {
           <Route path='/sellerlogin'  element={<SellerPage/>}/>
           <Route path='/profile' element={<ProfilePage/>} />
           <Route path='/checkout' element={<CheckoutPage/>}/>
+          <Route path='/admina'  element={<Admina/>}/>
+          <Route path='/settings'  element={<AdminSettings/>}/>
+          <Route path='/Usermanage'  element={<Usermanagement/>}/>
           </Routes>
         </Router>
         </Product1Context>

@@ -1,5 +1,4 @@
-
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Pay = () => {
@@ -17,25 +16,46 @@ const Pay = () => {
   const [state, setState] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [recipientName, setRecipientName] = useState('');
-  const [customMessage, setCustomMessage] = useState('');
   const [totalAmount, setTotalAmount] = useState(0);
 
   const navigate = useNavigate();
   const location = useLocation();
- 
-
   useEffect(() => {
-    console.log(location.state); // Check if data is correctly passed
+    if (location.state) {
+      const {
+        cardHolderName,
+        totalAmount, // Use totalAmount from state
+        firstName,
+        lastName,
+        address1,
+        address2,
+        zip,
+        city,
+        state,
+        phone,
+        email
+      } = location.state;
+  
+      setCardHolderName(cardHolderName || '');
+      setTotalAmount(totalAmount || 0); // Set totalAmount state
+      setFirstName(firstName || '');
+      setLastName(lastName || '');
+      setAddress1(address1 || '');
+      setAddress2(address2 || '');
+      setZip(zip || '');
+      setCity(city || '');
+      setState(state || '');
+      setPhone(phone || '');
+      setEmail(email || '');
+    }
   }, [location.state]);
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     // Create an object to hold all the data you want to pass
     const receiptData = {
-      recipientName,
-      customMessage,
       cardHolderName,
       amount: totalAmount, // Final total amount including shipping and taxes
       firstName,
@@ -48,24 +68,18 @@ const Pay = () => {
       phone,
       email
     };
-  
+
     // Navigate to the /receipt page with receipt data
     navigate('/receipt', { state: receiptData });
   };
-  
-
+    // Navigate to the /receipt page with receipt data
+   
   const handleChange = (e) => {
     let value = e.target.value;
     value = value.replace(/\D/g, '');
     const formattedValue = value.replace(/(.{4})/g, '$1 ').trim();
     setCardNumber(formattedValue);
   };
-
-  
-  useEffect(() => {
-    const amount = localStorage.getItem("totalAmount");
-    setTotalAmount(amount);
-  }, []);
 
   return (
     <div className="flex flex-col items-center bg-white p-8 rounded-lg shadow-md">
@@ -158,5 +172,3 @@ const Pay = () => {
 };
 
 export default Pay;
-
-

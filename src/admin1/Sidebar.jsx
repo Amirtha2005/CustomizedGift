@@ -77,8 +77,17 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-   
     navigate('/home'); 
+  };
+  const handleuser = () => {
+    navigate('/Usermanage'); 
+  };
+  const handlesettings = () => {
+    navigate('/settings'); 
+  };
+
+  const handleManageProduct = () => {
+    navigate('/admina'); // Navigate to the Admina component
   };
 
   return (
@@ -101,43 +110,31 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           </a>
         </li>
         <li className="p-2">
-          <a href="#" className="flex items-center p-2 rounded-lg text-gray-800">
+          <button onClick={handleManageProduct} className="flex items-center p-2 rounded-lg text-gray-800 w-full text-left">
             <FontAwesomeIcon icon={faShoppingBag} className="mr-4" />
-            <span>My Store</span>
-          </a>
+            <span>Manage Product</span>
+          </button>
         </li>
         <li className="p-2">
-          <a href="#" className="flex items-center p-2 rounded-lg text-gray-800">
-            <FontAwesomeIcon icon={faChartPie} className="mr-4" />
-            <span>Analytics</span>
-          </a>
+          <button onClick={handleuser} className="flex items-center p-2 rounded-lg text-gray-800 w-full text-left">
+            <FontAwesomeIcon icon={faShoppingBag} className="mr-4" />
+            <span>User</span>
+          </button>
         </li>
         <li className="p-2">
-          <a href="#" className="flex items-center p-2 rounded-lg text-gray-800">
-            <FontAwesomeIcon icon={faMessage} className="mr-4" />
-            <span>Message</span>
-          </a>
-        </li>
-        <li className="p-2">
-          <a href="#" className="flex items-center p-2 rounded-lg text-gray-800">
-            <FontAwesomeIcon icon={faUsers} className="mr-4" />
-            <span>Team</span>
-          </a>
-        </li>
-      </ul>
-      <ul className="side-menu absolute bottom-0 w-full p-6">
-        <li className="p-2">
-          <a href="#" className="flex items-center p-2 rounded-lg text-gray-800">
+        <button onClick={handlesettings} className="flex items-center p-2 rounded-lg text-gray-800 w-full text-left">
             <FontAwesomeIcon icon={faCog} className="mr-4" />
             <span>Settings</span>
-          </a>
+            </button>
         </li>
         <li className="p-2">
-          <a href="#" className="flex items-center p-2 rounded-lg text-red-500" onClick={handleLogout}>
+          <button onClick={handleLogout} className="flex items-center p-2 rounded-lg text-red-500 w-full text-left">
             <FontAwesomeIcon icon={faSignOutAlt} className="mr-4" />
             <span>Logout</span>
-          </a>
+          </button>
         </li>
+          </ul>
+      <ul className="side-menu absolute bottom-0 w-full p-6">
       </ul>
     </section>
   );

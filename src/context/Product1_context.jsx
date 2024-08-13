@@ -1,19 +1,18 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { FRAME } from '../components/Frame';
 
 export const ShopContext = createContext(null);
 
-const getDefaultCart = () => {
+const getDefaultCart = (products) => {
   let cart = {};
-  for (let i = 1; i < FRAME.length + 1; i++) {
-    cart[i] = 0;
-  }
+  products.forEach((product) => {
+    cart[product.id] = 0;
+  });
   return cart;
 };
 
 const Product1Context = (props) => {
   const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState(getDefaultCart());
+  const [cartItems, setCartItems] = useState({});
   const [favItems, setFavItems] = useState([]);
   const [reviews, setReviews] = useState({});
 
@@ -24,10 +23,9 @@ const Product1Context = (props) => {
         const data = await response.json();
         setProducts(data);
 
-        const cart = {};
+        const cart = getDefaultCart(data);
         const review = {};
         data.forEach((product) => {
-          cart[product.id] = 0;
           review[product.id] = [];
         });
         setCartItems(cart);
@@ -52,15 +50,24 @@ const Product1Context = (props) => {
   };
 
   const addToCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+    setCartItems((prev) => {
+      console.log("Adding to cart:", itemId, "Current state:", prev[itemId]);
+      return { ...prev, [itemId]: prev[itemId] + 1 };
+    });
   };
 
   const removeFromCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    setCartItems((prev) => {
+      console.log("Removing from cart:", itemId, "Current state:", prev[itemId]);
+      return { ...prev, [itemId]: prev[itemId] > 0 ? prev[itemId] - 1 : 0 };
+    });
   };
 
   const updateCartItem = (newAmount, itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: newAmount }));
+    setCartItems((prev) => {
+      console.log("Updating cart item:", itemId, "New Amount:", newAmount);
+      return { ...prev, [itemId]: newAmount };
+    });
   };
 
   const toggleFavorite = (itemId) => {

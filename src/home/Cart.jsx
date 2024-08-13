@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import { ShopContext } from '../context/Product1_context';
-import { FRAME } from '../components/Frame';
 import CartItem from '../home/Cartitem';
 import { useNavigate } from "react-router-dom";
 import Navbar from './Navbar';
 
 const Cart = () => {
-  const { cartItems, getTotalCartAmount } = useContext(ShopContext);
+  const { products, cartItems, getTotalCartAmount } = useContext(ShopContext);
   const totalAmount = getTotalCartAmount();
   const navigate = useNavigate();
 
@@ -20,10 +19,11 @@ const Cart = () => {
         </div>
         <div className="w-full max-w-4xl">
           <div className="flex flex-col items-center">
-            {FRAME.map((product) => {
-              if (cartItems[product.id] !== 0) {
+            {products.map((product) => {
+              if (cartItems[product.id] > 0) {
                 return <CartItem key={product.id} data={product} />;
               }
+              return null;
             })}
           </div>
         </div>

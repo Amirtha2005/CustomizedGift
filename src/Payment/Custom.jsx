@@ -183,7 +183,7 @@ const Custom = () => {
       });
 
       console.log('Response:', response.data);
-      navigate('/pay', { state: { ...formData, productname, productimage, price } });
+      navigate('/checkout', { state: { ...formData, productname, productimage, price } });
     } catch (error) {
       console.error('Error creating custom gift:', error.response ? error.response.data : error.message);
     }

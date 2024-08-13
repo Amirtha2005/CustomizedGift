@@ -16,7 +16,7 @@ const Receipt = () => {
     zip: '',
     phone: '',
     email: '',
-    amount: 0
+    amount: 0 // Amount is taken directly from location.state if available
   };
 
   // Generate a random receipt ID
@@ -30,10 +30,10 @@ const Receipt = () => {
   const today = new Date();
   const month = today.getMonth() + 1;
   const year = today.getFullYear();
-  const date = today.getDate();
+  const currentDay = today.getDate();  // Renamed variable
   const hours = today.getHours();
   const minutes = today.getMinutes();
-  const currentDate = `${date}/${month}/${year}`;
+  const currentDate = `${currentDay}/${month}/${year}`;  // Updated to use the new variable name
   const currentTime = `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
 
   const handleExit = () => {
@@ -83,7 +83,7 @@ const Receipt = () => {
           </div>
           <div className="flex justify-between py-2">
             <span className="font-medium">Total Amount:</span>
-            <span>₹{receipt.amount}</span>
+            <span>₹{receipt.amount}</span> {/* Display the total amount */}
           </div>
         </div>
       </div>

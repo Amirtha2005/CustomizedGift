@@ -44,7 +44,7 @@ function CheckoutPage() {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    navigate("/checkout", { state: { totalAmount } });
+    navigate("/pay", { state: { totalAmount } });
   };
 
   // const handleOrder = (e) => {
