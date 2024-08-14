@@ -1,9 +1,10 @@
+
+
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 function CheckoutPage() {
-  // State for form fields
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address1, setAddress1] = useState("");
@@ -15,16 +16,12 @@ function CheckoutPage() {
   const [email, setEmail] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
-
   const location = useLocation();
   const totalAmount = location.state?.price || 0;
-
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // POST request to the backend
       await axios.post("http://localhost:8080/api/checkout", {
         firstName,
         lastName,
@@ -43,25 +40,8 @@ function CheckoutPage() {
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
-    navigate("/pay", { state: { totalAmount } });
-  };
-
-  // const handleOrder = (e) => {
-  //   e.preventDefault();
-  //   const finalTotalAmount = totalAmount + 200 + 100;
-  //   //navigate("/pay", { state: { totalAmount } });
-  //   localStorage.setItem("totalAmount", finalTotalAmount);
-  //   navigate("/pay");
-  // };
-
-  const handleOrder = (e) => {
-    e.preventDefault();
-    
-    // Calculate the final total amount
     const finalTotalAmount = totalAmount + 200 + 100; // Total amount plus shipping cost and taxes
-  
-    // Create an object to hold all the data you want to pass
+
     const orderDetails = {
       firstName,
       lastName,
@@ -76,20 +56,14 @@ function CheckoutPage() {
       shippingCost: 200,
       taxes: 100
     };
-  
-    // Store the total amount in localStorage if needed
-    //localStorage.setItem("totalAmount", finalTotalAmount);
+
     localStorage.setItem("orderDetails", JSON.stringify(orderDetails));
-  
-    // Navigate to the /pay page with order details
-    navigate("/pay", { state: orderDetails });
+    navigate("/pay", { state: orderDetails }); // Pass orderDetails including price
   };
-  
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex justify-center">
       <div className={`max-w-5xl w-full grid grid-cols-1 lg:grid-cols-3 gap-6 ${isModalOpen ? "blur-sm" : ""}`}>
-        {/* Shipping Address Form */}
         <div className="col-span-2 bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-2xl font-semibold mb-6">Shipping Address</h2>
           <form onSubmit={handleSubmit}>
@@ -182,6 +156,7 @@ function CheckoutPage() {
                   onChange={(e) => setState(e.target.value)}
                 >
                   <option>Select State</option>
+                  {/* Add more state options as needed */}
                   <option>Andhra Pradesh</option>
                   <option>Arunachal Pradesh</option>
                   <option>Assam</option>
@@ -251,7 +226,6 @@ function CheckoutPage() {
           </form>
         </div>
 
-        {/* Order Summary */}
         <div className="bg-white p-6 rounded-lg shadow-md">
           <div className="mb-4">
             <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
@@ -275,63 +249,25 @@ function CheckoutPage() {
               <span>₹ 100</span>
             </div>
             <div className="flex justify-between font-semibold mb-4">
-            <span>Total Amount:</span>
-            <span>₹{totalAmount + 200 + 100}</span>
+              <span>Total Amount:</span>
+              <span>₹{totalAmount + 200 + 100}</span>
             </div>
-            <button
-              onClick={handleOrder}
-              className="w-full bg-green-600 text-white p-2 rounded-lg hover:bg-green-700"
-            >
-              Place Order
-            </button>
           </div>
         </div>
       </div>
 
-      
-
-
-      {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="fixed inset-0 bg-black opacity-50"></div>
-          <div className="bg-white p-8 rounded-lg shadow-lg z-10 max-w-lg w-full">
-            <h2 className="text-2xl font-semibold mb-4">Entered Details</h2>
-            <p>
-              <strong>First Name:</strong> {firstName}
-            </p>
-            <p>
-              <strong>Last Name:</strong> {lastName}
-            </p>
-            <p>
-              <strong>Address 1:</strong> {address1}
-            </p>
-            <p>
-              <strong>Address 2:</strong> {address2}
-            </p>
-            <p>
-              <strong>Zip:</strong> {zip}
-            </p>
-            <p>
-              <strong>City:</strong> {city}
-            </p>
-            <p>
-              <strong>State:</strong> {state}
-            </p>
-            <p>
-              <strong>Phone:</strong> {phone}
-            </p>
-            <p>
-              <strong>Email:</strong> {email}
-            </p>
-            <div className="mt-4 flex justify-end">
-              <button
-                onClick={handleCloseModal}
-                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
-              >
-                Close
-              </button>
-            </div>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+            <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
+            <p className="mb-4">Thank you for your order!</p>
+            <p className="mb-2">Total Amount: ₹{totalAmount + 200 + 100}</p>
+            <button
+              onClick={handleCloseModal}
+              className="w-full bg-green-600 text-white p-2 rounded-lg hover:bg-green-700"
+            >
+              Proceed to Payment
+            </button>
           </div>
         </div>
       )}

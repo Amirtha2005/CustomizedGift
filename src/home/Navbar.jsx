@@ -277,7 +277,7 @@ const Navbar = () => {
     <nav className="bg-slate-900 text-white p-4 fixed top-0 left-0 w-full z-50 shadow-lg">
       <div className="container mx-auto flex items-center justify-between">
         <div className="text-3xl">
-          <IoReorderThreeOutline />
+          
         </div>
         <div className="relative flex items-center w-full max-w-sm md:max-w-md lg:max-w-lg">
           <input

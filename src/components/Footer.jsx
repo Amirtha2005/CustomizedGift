@@ -1,5 +1,7 @@
+
 import React from "react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import sampleVideo from "../animations/v6.mp4"; // Update the path to your video file
 
 const FooterLinks = [
   { title: "Home", link: "/#" },
@@ -10,28 +12,35 @@ const FooterLinks = [
 
 const Footer = () => {
   return (
-    <div className="text-white bg-slate-900">
-      <div className="bg-black/40 min-h-[400px]">
-        <div className="container grid md:grid-cols-3 pb-20 pt-5">
+    <div className="relative text-white">
+      {/* Video background */}
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+        src={sampleVideo}
+        title="Background Video"
+      >
+        Your browser does not support the video tag.
+      </video>
+      {/* Overlay for better content visibility */}
+      <div className="absolute inset-0 bg-black opacity-50"></div>
+      {/* Footer content */}
+      <div className="relative bg-black/40 min-h-[400px]  ">
+        <div className="container grid md:grid-cols-3 pb-20 pt-5 ">
           {/* Company details */}
-          <div className="py-8 px-4">
+          <div className="py-8 px-4 ">
             <a
               href="#"
-              className="font-semibold tracking-widest text-2xl sm:text-3xl font-cursive"
+              className="font-semibold tracking-widest text-2xl sm:text-3xl font-cursive bg-black bg-opacity-40 rounded-lg"
             >
               Surprise Hub
             </a>
             <p className="pt-4">
               Unwrap the joy of giving with Surprise Hub - where every gift tells a story.
             </p>
-            <a
-              href="https://www.youtube.com/channel/UC1H-a1MKEFXRiFlGNLcy7gQ"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-[#3d2517] py-2 px-4 mt-5 text-sm rounded-full"
-            >
-              Visit our YouTube Channel
-            </a>
           </div>
 
           {/* Footer links */}

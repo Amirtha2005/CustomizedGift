@@ -1,3 +1,5 @@
+
+
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -16,7 +18,7 @@ const Receipt = () => {
     zip: '',
     phone: '',
     email: '',
-    amount: 0 // Amount is taken directly from location.state if available
+    amount: 0
   };
 
   // Generate a random receipt ID
@@ -30,10 +32,10 @@ const Receipt = () => {
   const today = new Date();
   const month = today.getMonth() + 1;
   const year = today.getFullYear();
-  const currentDay = today.getDate();  // Renamed variable
+  const date = today.getDate();
   const hours = today.getHours();
   const minutes = today.getMinutes();
-  const currentDate = `${currentDay}/${month}/${year}`;  // Updated to use the new variable name
+  const currentDate = `${date}/${month}/${year}`;
   const currentTime = `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
 
   const handleExit = () => {
@@ -52,7 +54,7 @@ const Receipt = () => {
     <div className="bg-white p-8 rounded-lg shadow-md max-w-3xl mx-auto mt-10">
       <div className="text-center mb-6">
         {/* Store Name and Logo */}
-        <img src="LOGO_URL_HERE" alt="Surprise Hub Logo" className="mx-auto mb-4 w-12 h-12 rounded-full" />
+        <img src="https://tse3.mm.bing.net/th?id=OIP.geEspcN8sonuAmPHaDzCvAHaEo&pid=Api&P=0&h=180" alt="Surprise Hub Logo" className="mx-auto mb-4 w-12 h-12 rounded-full" />
         <h1 className="text-3xl font-bold">Surprise Hub</h1>
       </div>
       
@@ -82,9 +84,10 @@ const Receipt = () => {
             <span>Phone: {receipt.phone}, Email: {receipt.email}</span>
           </div>
           <div className="flex justify-between py-2">
-            <span className="font-medium">Total Amount:</span>
-            <span>₹{receipt.amount}</span> {/* Display the total amount */}
-          </div>
+  <span className="font-medium">Total Amount:</span>
+  <span>₹{receipt.amount}</span> {/* Display the total amount */}
+</div>
+
         </div>
       </div>
       <div className="text-center mt-6">
